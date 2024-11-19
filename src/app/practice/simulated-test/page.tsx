@@ -208,12 +208,11 @@ const SimulatedTest = () => {
   return (
     <div className='flex min-h-screen flex-col items-center justify-center bg-gray-50 p-6'>
       <div className='w-full max-w-2xl rounded-lg bg-white p-6 shadow-lg'>
+        {/* Mostrar contexto si está activo */}
         {showingContext && currentContext ? (
           <>
-            <h2 className='mb-4 text-2xl font-bold text-gray-900 dark:text-gray-200'>
-              Contexto
-            </h2>
-            <p className='mb-6 whitespace-pre-line text-lg text-gray-900 dark:text-gray-200'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-800'>Contexto</h2>
+            <p className='mb-6 whitespace-pre-line text-lg text-gray-700'>
               {currentContext.contextText}
             </p>
             <div className='mb-6'>
@@ -229,7 +228,7 @@ const SimulatedTest = () => {
               onClick={() => {
                 console.log('Botón "Continuar" clickeado')
                 setShowingContext(false)
-                setCurrentQuestionIndex(prev => prev + 1)
+                setCurrentQuestionIndex(prev => prev + 1) // Avanza al siguiente índice
               }}
               className='mt-4 rounded-lg bg-blue-600 px-6 py-2 font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-700'
             >
@@ -238,25 +237,37 @@ const SimulatedTest = () => {
           </>
         ) : (
           <>
-            <h2 className='mb-4 text-2xl font-bold text-gray-900 dark:text-gray-200'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-800'>
               Pregunta {currentQuestionIndex + 1} de {shuffledQuestions.length}
             </h2>
-            <p className='mb-6 text-lg text-gray-900 dark:text-gray-200'>
+            <p className='mb-6 text-lg text-gray-900 shadow-sm'>
               {currentQuestion.question}
             </p>
 
-            {/* Resto del código */}
+            {/* Mostrar imagen si existe */}
+            {currentQuestion.image && (
+              <div className='mb-6'>
+                <Image
+                  src={currentQuestion.image}
+                  alt={`Imagen para pregunta ${currentQuestion.id}`}
+                  width={500}
+                  height={300}
+                  className='rounded-lg'
+                />
+              </div>
+            )}
 
-            {/* Opciones de respuesta */}
             <ul className='space-y-4'>
               {currentQuestion.options.map((option, index) => {
                 let borderColor = 'border-gray-300'
                 let bgColor = 'bg-white'
+                let textColor = 'text-black' // Color predeterminado para mejorar la visibilidad.
 
                 if (selectedOption !== null) {
                   if (index === currentQuestion.correctAnswer) {
                     borderColor = 'border-green-500'
                     bgColor = 'bg-green-100'
+                    textColor = 'text-green-700' // Color para opciones correctas.
                   }
                   if (
                     index === selectedOption &&
@@ -264,6 +275,7 @@ const SimulatedTest = () => {
                   ) {
                     borderColor = 'border-red-500'
                     bgColor = 'bg-red-100'
+                    textColor = 'text-red-700' // Color para opciones incorrectas.
                   }
                 }
 
@@ -279,9 +291,7 @@ const SimulatedTest = () => {
                       <span className='font-bold text-blue-600'>
                         {getOptionLabel(index)}.
                       </span>
-                      <span className='flex-1 text-gray-900 dark:text-gray-200'>
-                        {option}
-                      </span>
+                      <span className={`flex-1 ${textColor}`}>{option}</span>
                     </button>
                   </li>
                 )
