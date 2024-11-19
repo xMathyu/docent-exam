@@ -1,13 +1,12 @@
-// SimulatedTest.tsx
-
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { questions, Question } from '@/app/utils/questions'
-import { contexts, Context } from '@/app/utils/contexts' // Asegúrate de que la ruta sea correcta
+import { contexts, Context } from '@/app/utils/contexts'
 
 const SimulatedTest = () => {
+  const [isMounted, setIsMounted] = useState(false)
   const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
@@ -17,6 +16,13 @@ const SimulatedTest = () => {
   const [currentContext, setCurrentContext] = useState<Context | null>(null)
 
   useEffect(() => {
+    setIsMounted(true)
+    console.log('Componente montado en el cliente')
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return
+
     const shuffleArray = (array: Question[]): Question[] => {
       return array
         .map(q => ({
@@ -25,6 +31,7 @@ const SimulatedTest = () => {
         }))
         .sort(() => Math.random() - 0.5)
     }
+
     // Identificar las preguntas especiales y normales
     const specialQuestionIds = [34, 35, 36]
     const specialQuestions = questions.filter(q =>
@@ -43,9 +50,11 @@ const SimulatedTest = () => {
       ...specialQuestions
     ]
 
+    console.log('Combined Questions:', combinedQuestions)
+
     setShuffledQuestions(combinedQuestions)
     setAnswers(new Array(combinedQuestions.length).fill(null))
-  }, [])
+  }, [isMounted])
 
   const shuffleOptions = (options: string[]): string[] => {
     return options
@@ -59,15 +68,21 @@ const SimulatedTest = () => {
     const currentQuestion = shuffledQuestions[currentQuestionIndex]
     const previousAnswer = updatedAnswers[currentQuestionIndex]
 
+    console.log(
+      `Respondida pregunta ${currentQuestion.id} con opción ${selectedOptionIndex}`
+    )
+
     // Actualizar el puntaje
     if (previousAnswer !== null) {
       if (previousAnswer === currentQuestion.correctAnswer) {
         setScore(prev => prev - 1)
+        console.log('Puntaje decrementado por respuesta anterior correcta')
       }
     }
 
     if (selectedOptionIndex === currentQuestion.correctAnswer) {
       setScore(prev => prev + 1)
+      console.log('Puntaje incrementado por respuesta correcta')
     }
 
     updatedAnswers[currentQuestionIndex] = selectedOptionIndex
@@ -76,6 +91,8 @@ const SimulatedTest = () => {
     // Avanzar a la siguiente pregunta después de 2 segundos
     setTimeout(() => {
       const nextQuestion = shuffledQuestions[currentQuestionIndex + 1]
+
+      console.log('Next Question:', nextQuestion)
 
       if (
         nextQuestion &&
@@ -87,6 +104,7 @@ const SimulatedTest = () => {
           c.questionIds.includes(nextQuestion.id)
         )
         if (context) {
+          console.log('Mostrando contexto para preguntas:', context.questionIds)
           setCurrentContext(context)
           setShowingContext(true)
           return
@@ -95,8 +113,10 @@ const SimulatedTest = () => {
 
       if (currentQuestionIndex < shuffledQuestions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1)
+        console.log('Avanzando a la siguiente pregunta')
       } else {
         setIsFinished(true)
+        console.log('Simulacro finalizado')
       }
     }, 2000)
   }
@@ -105,24 +125,55 @@ const SimulatedTest = () => {
     return String.fromCharCode(97 + index) // Genera las letras a, b, c, etc.
   }
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     if (currentQuestionIndex > 0) {
       const previousQuestion = shuffledQuestions[currentQuestionIndex - 1]
       if ([34, 35, 36].includes(previousQuestion.id)) {
         // Si se está regresando desde una pregunta especial, ocultar el contexto
         setShowingContext(false)
         setCurrentQuestionIndex(prev => prev - 1)
+        console.log('Regresando desde una pregunta especial')
       } else {
         setCurrentQuestionIndex(prev => prev - 1)
+        console.log('Regresando a la pregunta anterior')
       }
     }
-  }
+  }, [currentQuestionIndex, shuffledQuestions])
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentQuestionIndex < shuffledQuestions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1)
+      console.log('Avanzando manualmente a la siguiente pregunta')
     }
-  }
+  }, [currentQuestionIndex, shuffledQuestions.length])
+
+  // Manejar las teclas del teclado
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (showingContext) {
+        // Mientras se muestra el contexto, no permitir navegación
+        return
+      }
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          handlePrevious()
+          break
+        case 'ArrowRight':
+          handleNext()
+          break
+        default:
+          break
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    // Limpiar el listener al desmontar el componente
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [handlePrevious, handleNext, showingContext])
 
   if (isFinished) {
     return (
@@ -174,7 +225,11 @@ const SimulatedTest = () => {
               />
             </div>
             <button
-              onClick={() => setShowingContext(false)}
+              onClick={() => {
+                console.log('Botón "Continuar" clickeado')
+                setShowingContext(false)
+                setCurrentQuestionIndex(prev => prev + 1) // Avanza al siguiente índice
+              }}
               className='mt-4 rounded-lg bg-blue-600 px-6 py-2 font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-700'
             >
               Continuar
