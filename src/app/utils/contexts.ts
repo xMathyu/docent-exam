@@ -1,13 +1,8 @@
-// contexts.ts
-
-export interface Context {
-  questionIds: number[]
-  contextText: string
-  image: string
-}
+import { Context } from '../types'
 
 export const contexts: Context[] = [
   {
+    id: 1,
     questionIds: [34, 35, 36],
     contextText: `**Lea la siguiente situación y responda las preguntas 34, 35 y 36.**
   
