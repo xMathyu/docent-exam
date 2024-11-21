@@ -401,7 +401,7 @@ export const questions: Question[] = [
       'Antonella, de cinco años, llega al aula con la lista que escribió para ir a comprar a la tienda. Al ver a la docente, se la muestra. Cuando la docente le pregunta qué escribió en la lista, la niña contesta: “Queso, sandía y arroz”. A continuación, se presenta el escrito de la niña:\n\nConsiderando los niveles de apropiación del sistema de escritura propuestos por Emilia Ferreiro y Ana Teberosky, ¿en qué nivel se encuentra Antonella?',
     image: '/images/image-4.png',
     options: ['Presilábico.', 'Silábico.', 'Silábico-alfabético.'],
-    correctAnswer: 'c'
+    correctAnswer: 'a'
   },
   {
     id: 39,
@@ -499,7 +499,7 @@ export const questions: Question[] = [
       'Presentarles una lista de preguntas y explicarles por qué son adecuadas para el propósito de la entrevista. Luego, decirles que empiecen el diálogo saludando a los entrevistados y preguntándoles sus respectivos nombres.',
       'Pedirles que digan qué quieren preguntar. Luego, guiarlos para que se queden con las preguntas que respondan a su propósito, y para que empiecen con las relacionadas a los cuidados para todas las plantas hasta llegar a los geranios y chavelitas.'
     ],
-    correctAnswer: 'a'
+    correctAnswer: 'c'
   },
   {
     id: 48,
@@ -510,7 +510,7 @@ export const questions: Question[] = [
       'Explicar a los niños que las botellas de plástico vacías no se hunden en el agua. Luego, elaborar un barquito con una botella de plástico cortada y comprobar junto con ellos que no se hunde. Finalmente, decirles que elaboren sus barquitos con ese material, pero de la forma, tamaño y color que prefieran.',
       'Colocar en una tina con agua varios objetos de diversos materiales. Luego, pedir a los niños que observen qué sucedió con cada uno de ellos al ponerlos en el agua. Finalmente, sugerirles que elaboren sus barquitos con los materiales de aquellos objetos que no se hayan hundido en la tina.'
     ],
-    correctAnswer: 'b'
+    correctAnswer: 'a'
   },
   {
     id: 49,
@@ -521,7 +521,7 @@ export const questions: Question[] = [
       '¿Les habían dicho que las tijeretas les pueden picar si las tocan bruscamente?',
       '¿Para qué les servirá a estos animalitos la parte de su cuerpo que se parece a las tijeras?'
     ],
-    correctAnswer: 'c'
+    correctAnswer: 'b'
   },
   {
     id: 50,
@@ -543,7 +543,7 @@ export const questions: Question[] = [
       'Pedir a los niños que inventen una historia sobre lombrices a partir de los diálogos realizados.',
       'Enseñar a los niños expresiones y gestos que pueden usar para enriquecer sus diálogos en el juego.'
     ],
-    correctAnswer: 'c'
+    correctAnswer: 'a'
   },
   {
     id: 52,
@@ -609,7 +609,7 @@ export const questions: Question[] = [
       'Promover la metacognición.',
       'Recoger saberes previos.'
     ],
-    correctAnswer: 'b'
+    correctAnswer: 'a'
   },
   {
     id: 58,
