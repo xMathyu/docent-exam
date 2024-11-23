@@ -17,15 +17,26 @@ export default function Home() {
 
         {/* Main Content */}
         <main>
-          <button
-            className='w-full max-w-md transform rounded-full bg-blue-600 px-8 py-4 font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300'
-            onClick={() => {
-              // Redirigir a la página del simulacro
-              window.location.href = '/practice/simulated-test'
-            }}
-          >
-            ¡Comenzar Práctica!
-          </button>
+          <div className='space-y-4'>
+            <button
+              className='w-full max-w-md transform rounded-full bg-blue-600 px-8 py-4 font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300'
+              onClick={() => {
+                // Redirigir a la página del simulacro, versión 1
+                window.location.href = '/practice/simulated-test?version=1'
+              }}
+            >
+              ¡Comenzar Práctica! Versión 1
+            </button>
+            <button
+              className='w-full max-w-md transform rounded-full bg-green-600 px-8 py-4 font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300'
+              onClick={() => {
+                // Redirigir a la página del simulacro, versión 2
+                window.location.href = '/practice/simulated-test?version=2'
+              }}
+            >
+              ¡Comenzar Práctica! Versión 2
+            </button>
+          </div>
         </main>
       </div>
 

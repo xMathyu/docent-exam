@@ -1,6 +1,6 @@
 import { Context } from '../types'
 
-export const contexts: Context[] = [
+export const contextsVersion1: Context[] = [
   {
     id: 1,
     questionIds: [34, 35, 36],
@@ -56,6 +56,6 @@ export const contexts: Context[] = [
   “Pero, Frederick”, le dijeron. “¡Tú eres un poeta!”.
   
   Frederick se ruborizó, hizo una reverencia y dijo tímidamente: “Ya lo sé”.`,
-    image: '/images/image-3.png'
+    image: '/images/questionsVersion1/image-3.png'
   }
 ]

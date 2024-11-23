@@ -1,24 +1,31 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { questions } from '@/app/utils/questions'
-import { contexts } from '@/app/utils/contexts'
+import { questionsVersion1 } from '@/app/utils/questionsVersion1'
+import { questionsVersion2 } from '@/app/utils/questionsVersion2'
+import { contextsVersion1 } from '@/app/utils/contextsVersion1'
+import { contextsVersion2 } from '@/app/utils/contextsVersion2'
 import { Question, Context } from '@/app/types'
 import QuestionCard from '@/app/components/QuestionCard'
 import Navigation from '@/app/components/Navigation'
 import FinalScreen from '@/app/components/FinalScreen'
 import ContextScreen from '@/app/components/ContextScreen'
 import useKeyboardNavigation from '@/app/hooks/useKeyboardNavigation'
+import { useSearchParams } from 'next/navigation'
 
 const SimulatedTest: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false)
   const [questionsList, setQuestionsList] = useState<Question[]>([])
+  const [selectedContexts, setSelectedContexts] = useState<Context[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [answers, setAnswers] = useState<(string | null)[]>([])
   const [isFinished, setIsFinished] = useState(false)
   const [showingContext, setShowingContext] = useState(false)
   const [currentContext, setCurrentContext] = useState<Context | null>(null)
+
+  const searchParams = useSearchParams()
+  const version = searchParams.get('version') || '1'
 
   const handlePrevious = useCallback(() => {
     if (currentQuestionIndex > 0) {
@@ -57,11 +64,32 @@ const SimulatedTest: React.FC = () => {
 
   useEffect(() => {
     if (isMounted) {
-      setQuestionsList(questions)
-      setAnswers(new Array(questions.length).fill(null))
-      console.log('Preguntas cargadas:', questions)
+      let selectedQuestions = []
+      let contexts = []
+
+      if (version === '1') {
+        selectedQuestions = questionsVersion1
+        contexts = contextsVersion1
+      } else if (version === '2') {
+        selectedQuestions = questionsVersion2
+        contexts = contextsVersion2
+      } else {
+        // Manejar versiones no válidas
+        selectedQuestions = questionsVersion1
+        contexts = contextsVersion1
+      }
+
+      setQuestionsList(selectedQuestions)
+      setSelectedContexts(contexts)
+      setAnswers(new Array(selectedQuestions.length).fill(null))
+      console.log(
+        'Preguntas cargadas para versión',
+        version,
+        ':',
+        selectedQuestions
+      )
     }
-  }, [isMounted])
+  }, [isMounted, version])
 
   const handleAnswer = (selectedOptionIndex: number) => {
     const updatedAnswers = [...answers]
@@ -101,7 +129,7 @@ const SimulatedTest: React.FC = () => {
         [34, 35, 36].includes(nextQuestion.id) &&
         !showingContext
       ) {
-        const context = contexts.find(c =>
+        const context = selectedContexts.find(c =>
           c.questionIds.includes(nextQuestion.id)
         )
         if (context) {
