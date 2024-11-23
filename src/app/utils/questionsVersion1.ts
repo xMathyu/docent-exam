@@ -1,6 +1,6 @@
 import { Question } from '../types'
 
-export const questions: Question[] = [
+export const questionsVersion1: Question[] = [
   {
     id: 1,
     question:
@@ -276,7 +276,7 @@ export const questions: Question[] = [
     id: 26,
     question:
       'En la hora del juego libre en los sectores, Ananías, de cinco años, está jugando con botones de diferentes colores. El niño pone en fila 6 botones negros y llama a la docente para mostrarle lo que hizo. La docente se acerca y, al verlo, le propone: “Ananías, qué tal si con los botones blancos formas otra fila con la misma cantidad de botones que los negros”. Entonces, Ananías lo hace de la siguiente manera',
-    image: '/images/image-1.png',
+    image: '/images/questionsVersion1/image-1.png',
     options: [
       'Conservación no duradera.',
       'Ausencia de correspondencia término a término.',
@@ -299,7 +299,7 @@ export const questions: Question[] = [
     id: 28,
     question:
       'Diana y Laura, del aula de cuatro años, juegan con un dado que tiene hasta 3 puntos porcara. El juego consiste en lanzar el dado y adivinar la cantidad de puntos que saldrá. La queadivina gana un punto. Cada punto equivale a un botón. Concluido el juego, Laura tiene 3botones y Diana tiene 5 botones. Ellas los ordenaron de la siguiente manera:',
-    image: '/images/image-2.png',
+    image: '/images/questionsVersion1/image-2.png',
     options: [
       'Que la niña avanzó limitadamente el proceso de la adquisición de la noción de número.',
       'Que la niña se encuentra en el proceso de la adquisición de la noción de número.',
@@ -318,7 +318,7 @@ export const questions: Question[] = [
     id: 30,
     question:
       'Considerando La docente del aula de cinco años busca que los niños resuelvan problemasde localización. Para ello, les plantea una situación lúdica llamada “Veo, veo”. Primero, les pide que se ubiquen en diferentes sitios del aula, de forma que todos puedan verse. A continuación, se desarrolla el siguiente diálogo:',
-    image: '/images/dialogo.png',
+    image: '/images/questionsVersion1/dialogo.png',
     options: [
       'Mostrar Permite que los niños aprendan a través del juego y la diversión. ',
       'Permite que los niños establezcan relaciones espaciales entre ellos y los objetos.',
@@ -399,7 +399,7 @@ export const questions: Question[] = [
     id: 38,
     question:
       'Antonella, de cinco años, llega al aula con la lista que escribió para ir a comprar a la tienda. Al ver a la docente, se la muestra. Cuando la docente le pregunta qué escribió en la lista, la niña contesta: “Queso, sandía y arroz”. A continuación, se presenta el escrito de la niña:\n\nConsiderando los niveles de apropiación del sistema de escritura propuestos por Emilia Ferreiro y Ana Teberosky, ¿en qué nivel se encuentra Antonella?',
-    image: '/images/image-4.png',
+    image: '/images/questionsVersion1/image-4.png',
     options: ['Presilábico.', 'Silábico.', 'Silábico-alfabético.'],
     correctAnswer: 'a'
   },
@@ -418,7 +418,7 @@ export const questions: Question[] = [
     id: 40,
     question:
       'La docente del aula de cinco años ha colocado recientemente un libro de poesía en la biblioteca. Hoy dos niños han cogido ese libro y, luego de revisarlo, han escogido un poema y le han pedido a la docente que se los lea. Al notar los otros niños que la docente les leerá el libro, varios se acercan a escuchar. A continuación, se presenta el poema que los niños escogieron:\n\nLa semillita que despertó\nEl sol la alumbró,\nsu cuerpecito calentó\ny la lluvia con sus gotitas la despertó.\nEntonces asomó curiosa\nla semillita preciosa.\nAbrió muy grande sus ojos\ny en planta se convirtió.\n\nLa docente les pide a los niños que se pongan cómodos y les muestra el poema. A continuación, la docente les lee el poema. ¿Cuál de las siguientes acciones es más pertinente para seguir acercando a los niños a este tipo de texto?',
-    image: '/images/nube.png',
+    image: '/images/questionsVersion1/nube.png',
     options: [
       'Leer el poema mientras todos escuchan con atención. Luego, invitarlos a compartir sus comentarios sobre lo que sintieron al escuchar el poema. Finalmente, pedirles que digan cómo se imaginan a la semillita, a la lluvia y al sol.',
       'Explicar a los niños que los poemas suelen tener palabras que suenan parecido. Luego, leerles el poema enfatizando palabras como “alumbró”, “calentó” o “despertó”. Finalmente, preguntarles qué palabras parecidas identificaron.',
@@ -430,7 +430,7 @@ export const questions: Question[] = [
     id: 41,
     question:
       'La docente y los niños del aula de cinco años tienen como propósito que los niños creen historias. Aprovechando que los niños están llevando a cabo el proyecto “Hacemos un huerto”, les presenta la siguiente imagen:\n\n¿Cuál de las siguientes acciones es pertinente para que los niños creen historias a partir de esta imagen?',
-    image: '/images/image-campo.png',
+    image: '/images/questionsVersion1/image-campo.png',
     options: [
       'Contar a los niños que los personajes de la imagen se llaman Rosa y José, y que un día descubrieron a dos conejos comiéndose las zanahorias de su huerto. Luego, decirles que cuenten de nuevo la historia cambiando de nombre a los personajes.',
       'Preguntarles: “¿Qué están haciendo los niños de la imagen? ¿Qué hacen los conejos? ¿Qué opinan de lo que hacen los conejos?”. Luego, pedirles que propongan ideas para que otros animalitos no hagan lo mismo en el huerto que están construyendo.',
@@ -486,7 +486,7 @@ export const questions: Question[] = [
     id: 46,
     question:
       'A continuación, se muestra el escrito de una niña de cinco años.\n\nSegún los niveles de apropiación del sistema de escritura propuestos por Emilia Ferreiro, ¿en qué nivel se encuentra la niña?',
-    image: '/images/image-7.png',
+    image: '/images/questionsVersion1/image-7.png',
     options: ['Presilábico.', 'Silábico.', 'Silábico-alfabético.'],
     correctAnswer: 'b'
   },
