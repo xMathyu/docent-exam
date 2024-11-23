@@ -149,7 +149,7 @@ const SimulatedTestClient: React.FC = () => {
         setIsFinished(true)
         console.log('Simulacro finalizado')
       }
-    }, 2000)
+    }, 1000)
   }
 
   const getOptionLabel = (index: number): string => {
